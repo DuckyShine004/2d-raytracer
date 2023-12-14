@@ -79,7 +79,8 @@ class EntityManager:
                 p3 = wall.p1
                 p4 = wall.p2
 
-                print(Utility.get_intersection(p1, p2, p3, p4))
+                intersection = Utility.get_intersection(p1, p2, p3, p4)
+                ray.update_position(intersection)
 
     def render_rays(self):
         for ray in self.rays:

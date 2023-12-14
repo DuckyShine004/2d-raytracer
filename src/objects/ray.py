@@ -12,3 +12,7 @@ class Ray(Line):
 
         self.set_position(self.p1, x1 + dx, y1 + dy)
         self.set_position(self.p2, x2 + dx, y2 + dy)
+
+    def update_position(self, position):
+        if position:
+            self.set_position(self.p2, position.x, position.y)
