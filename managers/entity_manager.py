@@ -4,6 +4,7 @@ import math
 import pygame
 
 from src.objects.ray import Ray
+from src.objects.line import Line
 from src.objects.point import Point
 
 from src.utilities.utility import Utility
@@ -23,6 +24,7 @@ class EntityManager:
         self.app = app
 
         self.rays = []
+        self.walls = []
 
     def create_rays(self):
         for ray_index in range(RAYS):
@@ -35,6 +37,9 @@ class EntityManager:
             p2 = Point(RAY_X + dx, RAY_Y + dy)
 
             self.rays.append(Ray(p1, p2))
+
+    def create_walls(self):
+        self.walls.append(Line(Point(50, 20), Point(120, 500)))
 
     def get_direction(self):
         keys = pygame.key.get_pressed()
@@ -70,3 +75,7 @@ class EntityManager:
     def render_rays(self):
         for ray in self.rays:
             ray.render(self.app.window)
+
+    def render_walls(self):
+        for wall in self.walls:
+            wall.render(self.app.window)

@@ -24,6 +24,7 @@ class App:
 
         # Test
         self.entity_manager.create_rays()
+        self.entity_manager.create_walls()
 
     def run(self):
         while self.is_running:
@@ -31,6 +32,7 @@ class App:
             self.window.fill(WINDOW_COLOR)
 
             self.entity_manager.update_rays()
+            self.entity_manager.render_walls()
             self.entity_manager.render_rays()
 
             pygame.display.flip()
