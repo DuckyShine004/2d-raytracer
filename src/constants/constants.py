@@ -11,7 +11,7 @@ RAY_X = WINDOW_WIDTH // 2
 RAY_Y = WINDOW_HEIGHT // 2
 
 # Circle
-RADIUS = 100
+RADIUS = 10000
 HALF_TAU = 360
 
 # Colors

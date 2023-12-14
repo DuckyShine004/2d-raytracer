@@ -9,7 +9,6 @@ from src.objects.point import Point
 from src.utilities.utility import Utility
 
 from src.constants.constants import (
-    FRAME_RATE,
     SPEED,
     RAYS,
     RAY_X,
@@ -63,15 +62,10 @@ class EntityManager:
         for ray in self.rays:
             normalization = Utility.get_normalization(direction.x, direction.y)
 
-            ax, ay = ray.p1.get_pos()
-            bx, by = ray.p2.get_pos()
-
             vx = SPEED * direction.x * normalization
             vy = SPEED * direction.y * normalization
 
-            print((ax, ay), (bx, by))
-            ray.set_pos(ray.p1, ax + vx, ay + vy)
-            ray.set_pos(ray.p2, bx + vx, by + vy)
+            ray.set_displacement(vx, vy)
 
     def render_rays(self):
         for ray in self.rays:
