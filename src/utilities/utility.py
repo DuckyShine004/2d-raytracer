@@ -17,6 +17,15 @@ class Utility:
         return abs(x) > 0 or abs(y) > 0
 
     @staticmethod
+    def check_valid_coefficients(coefficients):
+        t, u = coefficients
+
+        if not (t and u):
+            return False
+
+        return -ALPHA <= t <= 1 + ALPHA and -ALPHA <= u <= 1 + ALPHA
+
+    @staticmethod
     def get_magnitude(x, y):
         return math.sqrt(math.pow(x, 2) + math.pow(y, 2))
 
@@ -47,29 +56,35 @@ class Utility:
     def get_bezier_coefficients(determinants):
         a, b, c, d, e, f = determinants
 
-        t = Utility.get_determinant(a, b, c, d) / Utility.get_determinant(e, b, f, d)
-        u = Utility.get_determinant(a, e, c, f) / Utility.get_determinant(e, b, f, d)
+        numerator_t = Utility.get_determinant(a, b, c, d)
+        numerator_u = Utility.get_determinant(a, e, c, f)
+
+        denominator = Utility.get_determinant(e, b, f, d)
+
+        if denominator == 0:
+            return None, None
+
+        t = numerator_t / denominator
+        u = numerator_u / denominator
 
         return t, u
 
     @staticmethod
     def get_intersection_point(coefficients, x1, x2, y1, y2):
-        t, u = coefficients
+        if not Utility.check_valid_coefficients(coefficients):
+            return None
 
-        intersection_point = None
+        t, u = coefficients
 
         print(t, Point(x2, y2))
 
-        if -ALPHA <= t <= 1 + ALPHA and -ALPHA <= u <= 1 + ALPHA:
-            t = Utility.clamp(t, 0, 1)
-            u = Utility.clamp(u, 0, 1)
+        t = Utility.clamp(t, 0, 1)
+        u = Utility.clamp(u, 0, 1)
 
-            px = x1 + t * (x2 - x1)
-            py = y1 + t * (y2 - y1)
+        px = x1 + t * (x2 - x1)
+        py = y1 + t * (y2 - y1)
 
-            intersection_point = Point(px, py)
-
-        return intersection_point
+        return Point(px, py)
 
     @staticmethod
     def get_intersection(p1, p2, p3, p4):
