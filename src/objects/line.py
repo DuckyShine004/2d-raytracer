@@ -1,18 +1,14 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-
 import pygame
-
-from src.objects.point import Point
 
 from src.constants.constants import WHITE
 
 
-@dataclass
 class Line:
-    p1: Point
-    p2: Point
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
 
     def set_position(self, p, x, y):
         p.set_position(x, y)
