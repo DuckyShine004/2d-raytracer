@@ -72,6 +72,15 @@ class EntityManager:
 
             ray.set_displacement(vx, vy)
 
+            p1 = ray.p1
+            p2 = ray.p2
+
+            for wall in self.walls:
+                p3 = wall.p1
+                p4 = wall.p2
+
+                print(Utility.get_intersection(p1, p2, p3, p4))
+
     def render_rays(self):
         for ray in self.rays:
             ray.render(self.app.window)
