@@ -8,5 +8,9 @@ RAYS = 30
 RAY_X = WINDOW_WIDTH // 2
 RAY_Y = WINDOW_HEIGHT // 2
 
+# Circle
+RADIUS = 10000
+HALF_TAU = 360
+
 # Colors
 WHITE = (255, 255, 255)

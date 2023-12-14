@@ -5,7 +5,7 @@ import math
 from src.objects.ray import Ray
 from src.objects.point import Point
 
-from src.constants.constants import RAYS, RAY_X, RAY_Y
+from src.constants.constants import RAYS, RAY_X, RAY_Y, RADIUS, HALF_TAU
 
 
 class EntityManager:
@@ -15,13 +15,19 @@ class EntityManager:
         self.rays = []
 
     def create_rays(self):
-        for i in range(1):
-            p1 = Point(RAY_X, RAY_Y)
-            p2 = Point(0, 0)
+        p1 = Point(RAY_X, RAY_Y)
+
+        for ray_index in range(RAYS):
+            theta = math.radians(HALF_TAU * (ray_index / RAYS))
+
+            dx = RADIUS * math.cos(theta)
+            dy = RADIUS * math.sin(theta)
+
+            p2 = Point(RAY_X + dx, RAY_Y + dy)
 
             self.rays.append(Ray(p1, p2))
 
-    def update_rays():
+    def update_rays(self):
         for ray in self.rays:
             ...
 
