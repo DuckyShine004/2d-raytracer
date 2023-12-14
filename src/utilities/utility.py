@@ -71,12 +71,12 @@ class Utility:
 
     @staticmethod
     def get_intersection_point(coefficients, x1, x2, y1, y2):
+        print(coefficients[0], Point(x2, y2))
+
         if not Utility.check_valid_coefficients(coefficients):
             return None
 
         t, u = coefficients
-
-        print(t, Point(x2, y2))
 
         t = Utility.clamp(t, 0, 1)
         u = Utility.clamp(u, 0, 1)

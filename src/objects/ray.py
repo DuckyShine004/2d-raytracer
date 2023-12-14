@@ -4,6 +4,9 @@ import math
 import pygame
 
 from src.objects.line import Line
+from src.objects.point import Point
+
+from src.utilities.utility import Utility
 
 from src.constants.constants import (
     SPEED,
@@ -18,6 +21,15 @@ class Ray(Line):
         super().__init__(x, y)
 
         self.ray_id = ray_id
+        self.is_intersecting = False
+
+    def get_velocity(self, direction):
+        normalization = Utility.get_normalization(direction.x, direction.y)
+
+        vx = SPEED * direction.x * normalization
+        vy = SPEED * direction.y * normalization
+
+        return Point(vx, vy)
 
     def set_displacement(self, dx, dy):
         x1, y1 = self.p1.get_position()

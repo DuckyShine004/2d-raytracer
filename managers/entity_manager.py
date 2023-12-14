@@ -65,12 +65,9 @@ class EntityManager:
         direction = self.get_direction()
 
         for ray in self.rays:
-            normalization = Utility.get_normalization(direction.x, direction.y)
+            velocity = ray.get_velocity(direction)
 
-            vx = SPEED * direction.x * normalization
-            vy = SPEED * direction.y * normalization
-
-            ray.set_displacement(vx, vy)
+            ray.set_displacement(velocity.x, velocity.y)
 
             for wall in self.walls:
                 p1 = ray.p1
@@ -81,6 +78,8 @@ class EntityManager:
                 intersection = Utility.get_intersection(p1, p2, p3, p4)
 
                 ray.update_position(intersection)
+
+                # If there is currently an intersection with
 
     def render_rays(self):
         for ray in self.rays:
