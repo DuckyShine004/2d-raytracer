@@ -13,14 +13,14 @@ class Ray:
         self.p2 = p2
 
     def set_displacement(self, dx, dy):
-        x1, y1 = self.p1.get_pos()
-        x2, y2 = self.p2.get_pos()
+        x1, y1 = self.p1.get_position()
+        x2, y2 = self.p2.get_position()
 
-        self.set_pos(self.p1, x1 + dx, y1 + dy)
-        self.set_pos(self.p2, x2 + dx, y2 + dy)
+        self.set_position(self.p1, x1 + dx, y1 + dy)
+        self.set_position(self.p2, x2 + dx, y2 + dy)
 
-    def set_pos(self, p, x, y):
-        p.set_pos(x, y)
+    def set_position(self, p, x, y):
+        p.set_position(x, y)
 
     def render(self, window):
-        pygame.draw.line(window, WHITE, self.p1.get_pos(), self.p2.get_pos())
+        pygame.draw.line(window, WHITE, self.p1.get_position(), self.p2.get_position())
