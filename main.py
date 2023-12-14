@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import pygame
 
 from managers.event_manager import EventManager
@@ -9,6 +10,7 @@ from src.constants.constants import (
     WINDOW_WIDTH,
     WINDOW_HEIGHT,
     WINDOW_COLOR,
+    FRAME_RATE,
 )
 
 
@@ -28,14 +30,18 @@ class App:
             self.event_manager.handle_events()
             self.window.fill(WINDOW_COLOR)
 
+            self.entity_manager.update_rays()
             self.entity_manager.render_rays()
 
             pygame.display.flip()
+            pygame.time.Clock().tick(FRAME_RATE)
 
         pygame.quit()
 
 
 if __name__ == "__main__":
+    os.environ["SDL_VIDEO_CENTERED"] = "1"
+
     pygame.init()
 
     app = App()
