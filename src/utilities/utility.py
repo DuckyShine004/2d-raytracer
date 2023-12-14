@@ -4,6 +4,8 @@ import math
 
 from src.objects.point import Point
 
+from src.constants.constants import ALPHA
+
 
 class Utility:
     @staticmethod
@@ -56,7 +58,12 @@ class Utility:
 
         intersection_point = None
 
-        if 0 <= t <= 1 and 0 <= u <= 1:
+        print(t, Point(x2, y2))
+
+        if -ALPHA <= t <= 1 + ALPHA and -ALPHA <= u <= 1 + ALPHA:
+            t = Utility.clamp(t, 0, 1)
+            u = Utility.clamp(u, 0, 1)
+
             px = x1 + t * (x2 - x1)
             py = y1 + t * (y2 - y1)
 

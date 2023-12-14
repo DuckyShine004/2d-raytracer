@@ -36,7 +36,7 @@ class EntityManager:
             p1 = Point(RAY_X, RAY_Y)
             p2 = Point(RAY_X + dx, RAY_Y + dy)
 
-            self.rays.append(Ray(p1, p2))
+            self.rays.append(Ray(p1, p2, ray_index))
 
     def create_walls(self):
         self.walls.append(Line(Point(50, 20), Point(120, 500)))
@@ -72,14 +72,14 @@ class EntityManager:
 
             ray.set_displacement(vx, vy)
 
-            p1 = ray.p1
-            p2 = ray.p2
-
             for wall in self.walls:
+                p1 = ray.p1
+                p2 = ray.p2
                 p3 = wall.p1
                 p4 = wall.p2
 
                 intersection = Utility.get_intersection(p1, p2, p3, p4)
+
                 ray.update_position(intersection)
 
     def render_rays(self):

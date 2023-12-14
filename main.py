@@ -32,8 +32,9 @@ class App:
             self.window.fill(WINDOW_COLOR)
 
             self.entity_manager.update_rays()
-            self.entity_manager.render_walls()
+
             self.entity_manager.render_rays()
+            self.entity_manager.render_walls()
 
             pygame.display.flip()
             pygame.time.Clock().tick(FRAME_RATE)
