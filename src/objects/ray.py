@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import math
-import pygame
 
 from src.objects.line import Line
 from src.objects.point import Point
