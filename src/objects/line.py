@@ -22,7 +22,7 @@ class Line:
         Args:
             p1 (Point): Point 1.
             p2 (Point): Point 2.
-            color (TYPE): The color of the line.
+            color (Tuple[float, float, float]): The color of the line.
         """
 
         self.p1 = p1
