@@ -1,8 +1,14 @@
 from __future__ import annotations
 
 import math
+import random
 
 from src.objects.point import Point
+
+from src.constants.constants import (
+    WINDOW_WIDTH,
+    WINDOW_HEIGHT,
+)
 
 
 class Utility:
@@ -22,6 +28,13 @@ class Utility:
             return False
 
         return 0 < t < 1 and u > 0
+
+    @staticmethod
+    def get_random_point():
+        x = random.randint(0, WINDOW_WIDTH)
+        y = random.randint(0, WINDOW_HEIGHT)
+
+        return Point(x, y)
 
     @staticmethod
     def get_magnitude(x, y):
@@ -76,8 +89,6 @@ class Utility:
 
     @staticmethod
     def get_intersection_point(coefficients, x1, x2, y1, y2):
-        print(coefficients[0], Point(x2, y2))
-
         if not Utility.check_valid_coefficients(coefficients):
             return None
 
