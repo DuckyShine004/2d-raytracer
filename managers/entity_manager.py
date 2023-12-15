@@ -12,6 +12,7 @@ from src.utilities.utility import Utility
 from src.constants.constants import (
     SPEED,
     RAYS,
+    RADIUS,
     RAY_X,
     RAY_Y,
     RADIUS,
@@ -36,7 +37,7 @@ class EntityManager:
             p1 = Point(RAY_X, RAY_Y)
             p2 = Point(RAY_X + dx, RAY_Y + dy)
 
-            self.rays.append(Ray(p1, p2))
+            self.rays.append(Ray(p1, p2, ray_index))
 
     def create_walls(self):
         self.walls.append(Line(Point(50, 20), Point(120, 500)))
@@ -65,12 +66,29 @@ class EntityManager:
         direction = self.get_direction()
 
         for ray in self.rays:
-            normalization = Utility.get_normalization(direction.x, direction.y)
+            velocity = ray.get_velocity(direction)
 
-            vx = SPEED * direction.x * normalization
-            vy = SPEED * direction.y * normalization
+            closest = RADIUS
+            closest_point = None
 
-            ray.set_displacement(vx, vy)
+            ray.set_displacement(velocity.x, velocity.y)
+
+            for wall in self.walls:
+                p1 = ray.p1
+                p2 = ray.p2
+                p3 = wall.p1
+                p4 = wall.p2
+
+                intersection = Utility.get_intersection(p1, p2, p3, p4)
+
+                if intersection:
+                    distance = Utility.get_distance(p1, intersection)
+
+                    if distance < closest:
+                        closest = distance
+                        closest_point = intersection
+
+            ray.update_position(closest_point)
 
     def render_rays(self):
         for ray in self.rays:
