@@ -6,14 +6,13 @@ FRAME_RATE = 60
 
 # Objects
 SPEED = 10
-RAYS = 1
+RAYS = 10
 RAY_X = WINDOW_WIDTH // 2
 RAY_Y = WINDOW_HEIGHT // 2
 
 # Circle
 RADIUS = 500
 HALF_TAU = 360
-ALPHA = 0.01
 
 # Colors
 WHITE = (255, 255, 255)

@@ -12,6 +12,7 @@ from src.utilities.utility import Utility
 from src.constants.constants import (
     SPEED,
     RAYS,
+    RADIUS,
     RAY_X,
     RAY_Y,
     RADIUS,
@@ -67,6 +68,9 @@ class EntityManager:
         for ray in self.rays:
             velocity = ray.get_velocity(direction)
 
+            closest = RADIUS
+            closest_point = None
+
             ray.set_displacement(velocity.x, velocity.y)
 
             for wall in self.walls:
@@ -77,9 +81,14 @@ class EntityManager:
 
                 intersection = Utility.get_intersection(p1, p2, p3, p4)
 
-                ray.update_position(intersection)
+                if intersection:
+                    distance = Utility.get_distance(p1, intersection)
 
-                # If there is currently an intersection with
+                    if distance < closest:
+                        closest = distance
+                        closest_point = intersection
+
+            ray.update_position(closest_point)
 
     def render_rays(self):
         for ray in self.rays:

@@ -4,8 +4,6 @@ import math
 
 from src.objects.point import Point
 
-from src.constants.constants import ALPHA
-
 
 class Utility:
     @staticmethod
@@ -23,11 +21,18 @@ class Utility:
         if not (t and u):
             return False
 
-        return -ALPHA <= t <= 1 + ALPHA and -ALPHA <= u <= 1 + ALPHA
+        return 0 < t < 1 and u > 0
 
     @staticmethod
     def get_magnitude(x, y):
         return math.sqrt(math.pow(x, 2) + math.pow(y, 2))
+
+    @staticmethod
+    def get_distance(p1, p2):
+        dx = p1.x - p2.x
+        dy = p1.y - p2.y
+
+        return Utility.get_magnitude(dx, dy)
 
     @staticmethod
     def get_normalization(x, y):
@@ -88,10 +93,10 @@ class Utility:
 
     @staticmethod
     def get_intersection(p1, p2, p3, p4):
-        x1, y1 = p1.get_position()
-        x2, y2 = p2.get_position()
-        x3, y3 = p3.get_position()
-        x4, y4 = p4.get_position()
+        x3, y3 = p1.get_position()
+        x4, y4 = p2.get_position()
+        x1, y1 = p3.get_position()
+        x2, y2 = p4.get_position()
 
         positions = [x1, x2, x3, x4, y1, y2, y3, y4]
 

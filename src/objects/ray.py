@@ -21,7 +21,7 @@ class Ray(Line):
         super().__init__(x, y)
 
         self.ray_id = ray_id
-        self.is_intersecting = False
+        self.angle = math.radians(HALF_TAU * (ray_id / RAYS))
 
     def get_velocity(self, direction):
         normalization = Utility.get_normalization(direction.x, direction.y)
@@ -45,9 +45,7 @@ class Ray(Line):
         else:
             x1, y1 = self.p1.get_position()
 
-            theta = math.radians(HALF_TAU * (self.ray_id / RAYS))
-
-            dx = RADIUS * math.cos(theta)
-            dy = RADIUS * math.sin(theta)
+            dx = RADIUS * math.cos(self.angle)
+            dy = RADIUS * math.sin(self.angle)
 
             self.set_position(self.p2, x1 + dx, y1 + dy)
