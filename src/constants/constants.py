@@ -5,6 +5,7 @@ WINDOW_COLOR = (0, 0, 0)
 FRAME_RATE = 60
 
 # Objects
+WALLS = 4
 SPEED = 10
 RAYS = 10
 RAY_X = WINDOW_WIDTH // 2
@@ -15,4 +16,11 @@ RADIUS = 500
 HALF_TAU = 360
 
 # Colors
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
+
+# Default line colors
+RAY_COLOR = RED
+WALL_COLOR = WHITE

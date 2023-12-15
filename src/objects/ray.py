@@ -17,8 +17,8 @@ from src.constants.constants import (
 
 
 class Ray(Line):
-    def __init__(self, x, y, ray_id):
-        super().__init__(x, y)
+    def __init__(self, x, y, color, ray_id):
+        super().__init__(x, y, color)
 
         self.ray_id = ray_id
         self.angle = math.radians(HALF_TAU * (ray_id / RAYS))
@@ -39,7 +39,6 @@ class Ray(Line):
         self.set_position(self.p2, x2 + dx, y2 + dy)
 
     def update_position(self, position):
-        print(position, self.p2, self.ray_id)
         if position:
             self.set_position(self.p2, position.x, position.y)
         else:

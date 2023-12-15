@@ -10,6 +10,7 @@ from src.objects.point import Point
 from src.utilities.utility import Utility
 
 from src.constants.constants import (
+    WALLS,
     SPEED,
     RAYS,
     RADIUS,
@@ -17,6 +18,8 @@ from src.constants.constants import (
     RAY_Y,
     RADIUS,
     HALF_TAU,
+    RAY_COLOR,
+    WALL_COLOR,
 )
 
 
@@ -37,10 +40,16 @@ class EntityManager:
             p1 = Point(RAY_X, RAY_Y)
             p2 = Point(RAY_X + dx, RAY_Y + dy)
 
-            self.rays.append(Ray(p1, p2, ray_index))
+            self.rays.append(Ray(p1, p2, RAY_COLOR, ray_index))
 
     def create_walls(self):
-        self.walls.append(Line(Point(50, 20), Point(120, 500)))
+        self.walls.clear()
+
+        for _ in range(WALLS):
+            p1 = Utility.get_random_point()
+            p2 = Utility.get_random_point()
+
+            self.walls.append(Line(p1, p2, WALL_COLOR))
 
     def get_direction(self):
         keys = pygame.key.get_pressed()
