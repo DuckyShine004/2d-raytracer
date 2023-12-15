@@ -1,4 +1,5 @@
 [MESSAGES CONTROL]
 disable=
     import-error,
-    undefined-variable
+    undefined-variable,
+    no-member
