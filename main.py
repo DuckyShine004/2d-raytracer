@@ -1,3 +1,4 @@
+"""This module contains the main code needed to run the application."""
 import os
 import pygame
 
@@ -10,5 +11,7 @@ if __name__ == "__main__":
     pygame.init()
 
     app = App()
+
+    app.initialize()
 
     app.run()
