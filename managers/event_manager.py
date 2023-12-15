@@ -7,7 +7,6 @@ import pygame
 
 
 class EventManager:
-
     """The event manager will manage all events related to peripherals. For example, quitting an
     application relies on detecting keyboard events.
 
