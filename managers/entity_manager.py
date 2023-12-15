@@ -1,3 +1,5 @@
+"""This module aims to handle all enitities created within the application."""
+
 from __future__ import annotations
 
 import math
@@ -11,12 +13,10 @@ from src.utilities.utility import Utility
 
 from src.constants.constants import (
     WALLS,
-    SPEED,
     RAYS,
     RADIUS,
     RAY_X,
     RAY_Y,
-    RADIUS,
     HALF_TAU,
     RAY_COLOR,
     WALL_COLOR,
@@ -24,13 +24,29 @@ from src.constants.constants import (
 
 
 class EntityManager:
-    def __init__(self, app):
+    """The entity manager will manager all application entities.
+
+    Attributes:
+        app (App): The main application
+        rays (list): The array of ray objects.
+        walls (list): The array of wall objects.
+    """
+
+    def __init__(self, app: App) -> None:
+        """The entity manager constructor.
+
+        Args:
+            app (App): The main application.
+        """
+
         self.app = app
 
         self.rays = []
         self.walls = []
 
-    def create_rays(self):
+    def create_rays(self) -> None:
+        """Create rays."""
+
         for ray_index in range(RAYS):
             theta = math.radians(HALF_TAU * (ray_index / RAYS))
 
@@ -42,7 +58,9 @@ class EntityManager:
 
             self.rays.append(Ray(p1, p2, RAY_COLOR, ray_index))
 
-    def create_walls(self):
+    def create_walls(self) -> None:
+        """Create walls."""
+
         self.walls.clear()
 
         for _ in range(WALLS):
@@ -51,7 +69,13 @@ class EntityManager:
 
             self.walls.append(Line(p1, p2, WALL_COLOR))
 
-    def get_direction(self):
+    def get_direction(self) -> Point:
+        """Get the direction of the ray. This depends on the user's key press.
+
+        Returns:
+            Point: Returns the direction vector
+        """
+
         keys = pygame.key.get_pressed()
 
         dx = 0
@@ -71,7 +95,10 @@ class EntityManager:
 
         return Point(dx, dy)
 
-    def update_rays(self):
+    def update_rays(self) -> None:
+        """Update all the rays. This will update the ray's movement, and the collision (if any),
+        between the ray object and the walls."""
+
         direction = self.get_direction()
 
         for ray in self.rays:
@@ -99,10 +126,14 @@ class EntityManager:
 
             ray.update_position(closest_point)
 
-    def render_rays(self):
+    def render_rays(self) -> None:
+        """Render all ray objects."""
+
         for ray in self.rays:
             ray.render(self.app.window)
 
-    def render_walls(self):
+    def render_walls(self) -> None:
+        """Render all wall objects."""
+
         for wall in self.walls:
             wall.render(self.app.window)
