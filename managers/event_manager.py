@@ -1,5 +1,4 @@
-"""This module aims to handle all events that are related to peripherals.
-"""
+"""This module aims to handle all events that are related to peripherals."""
 
 from __future__ import annotations
 
