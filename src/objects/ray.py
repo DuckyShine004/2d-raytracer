@@ -1,5 +1,7 @@
 """The ray module is an object."""
 
+from typing import Tuple
+
 import math
 
 from src.objects.line import Line

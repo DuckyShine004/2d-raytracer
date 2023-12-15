@@ -1,5 +1,4 @@
-"""The utility module aims to provide an interface for useful helper functions.
-"""
+"""The utility module aims to provide an interface for useful helper functions."""
 
 from typing import List, Tuple
 

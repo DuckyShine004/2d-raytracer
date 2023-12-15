@@ -1,5 +1,7 @@
 """This module provides a vector interface."""
 
+from typing import Tuple
+
 from dataclasses import dataclass
 
 
@@ -26,7 +28,7 @@ class Point:
         self.x = x
         self.y = y
 
-    def get_position(self) -> Point:
+    def get_position(self) -> Tuple[float, float]:
         """Returns the position of the current point.
 
         Returns:
